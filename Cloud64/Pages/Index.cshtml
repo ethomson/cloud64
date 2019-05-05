@@ -1,0 +1,14 @@
+﻿@page
+@model IndexModel
+@{
+}
+
+<canvas id="emulator" style="border: none;"></canvas>
+
+<script type="text/javascript">
+    var Module = {
+        arguments: ['+sound'],
+        canvas: document.getElementById('emulator'),
+    };
+</script>
+<script type="text/javascript" src="x64.js"></script>

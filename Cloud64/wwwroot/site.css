@@ -1,0 +1,23 @@
+﻿html {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+h1#cloud64 {
+    display: block;
+    width: 300px;
+    height: 37px;
+    background-image: url('logo.png');
+    background-size: 300px 37px;
+    text-indent: -9999px;
+}
+
+div#container {
+    width: 768px;
+    margin: auto;
+}
+
+#emulator {
+    width: 768px;
+    height: 544px;
+}
