@@ -1,13 +1,34 @@
 ﻿@page
 @model IndexModel
 @{
+    string programPath = "wwwroot/program.prg";
+    string programBase64 = null;
+
+    if (System.IO.File.Exists(programPath))
+    {
+        programBase64 = Convert.ToBase64String(System.IO.File.ReadAllBytes(programPath));
+    }
 }
 
 <canvas id="emulator" style="border: none;"></canvas>
 
 <script type="text/javascript">
+    @if (programBase64 != null)
+    {
+        @:function loadFile() {
+        @:    var program = "@{ @programBase64 } ";
+        @:    FS.createDataFile('/', 'file.prg', window.atob(program), true, true);
+        @:}
+    }
+
     var Module = {
-        arguments: ['+sound'],
+        @if (programBase64 != null) {
+        @:preRun: [loadFile],
+        @:arguments: ['-autostart', 'file.prg', '+sound'],
+        } else
+        {
+        @:arguments: ['+sound'],
+        }
         canvas: document.getElementById('emulator'),
     };
 </script>
